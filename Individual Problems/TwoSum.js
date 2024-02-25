@@ -40,9 +40,33 @@ var twoSum = function(nums, target) {
   let map = {};
   for (let a = 0; a < nums.length; a ++){
     const diff = target - nums[a];
-    if (map.has(diff)){
-      return [map.get(diff), a];
+    if (diff in map) {
+      return [map[diff], a];
     }
-    else map.set(nums[a], a);
+    else map[nums[a]] = a;
   }
 };
+
+// using map
+var twoSum = function(nums, target) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++){
+    const diff = target - nums[i];
+    if (map.has(diff)) {
+      return [map.get(diff), i];
+    }
+    map.set(nums[i], i);
+  }
+};
+
+// brute force 
+function twoSum(nums, target) {
+  for (let i = 0; i < nums.length; i++) {
+      for (let j = i + 1; j < nums.length; j++) {
+          if (nums[i] + nums[j] === target) {
+              return [i, j];
+          }
+      }
+  }
+  return []; // Return an empty array if no pair is found
+}
