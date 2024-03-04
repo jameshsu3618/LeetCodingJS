@@ -1,4 +1,4 @@
-`Implement pow(x, n), which calculates x raised to the power n (i.e., xn).
+/* Implement pow(x, n), which calculates x raised to the power n (i.e., xn).
 
  
 
@@ -23,7 +23,7 @@ Constraints:
 -231 <= n <= 231-1
 n is an integer.
 Either x is not zero or n > 0.
--104 <= xn <= 104`
+-104 <= xn <= 104 */
 
 var myPow = function(x, n) {
   function binaryExp(x, n) {
