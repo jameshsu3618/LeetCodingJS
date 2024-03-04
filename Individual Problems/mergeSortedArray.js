@@ -86,3 +86,21 @@ var mergeWithoutCopy = function(nums1, m, nums2, n) {
       }
   }
 };
+
+// another one using for loop;
+var merge = function(nums1, m, nums2, n) {
+  let index1 = m - 1; 
+  let index2 = n - 1;
+  for (let i = m + n - 1; i >= 0; i--) {
+      if (index2 < 0) {
+          return; // use break when need to continue running other code
+      }
+      if (index1 >= 0 && nums1[index1] > nums2[index2]) {
+          nums1[i] = nums1[index1];
+          index1 --;
+      } else {
+          nums1[i] = nums2[index2];
+          index2 --;
+      }
+  }
+};
