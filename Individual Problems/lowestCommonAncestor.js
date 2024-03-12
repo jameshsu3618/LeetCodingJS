@@ -68,3 +68,28 @@ The pointers a and b never actually stay still; they always move either to their
 The key to this algorithm is that each pointer traverses the height of the tree exactly once, considering the switch. This guarantees that they will meet at the lowest common ancestor regardless of the nodes' positions in the tree.
 The loop continues until the pointers meet, which occurs at the LCA. They will always meet at this point because, by the time they converge, they've collectively traversed the entire height of the tree, ensuring they encounter their lowest common ancestor.
 By iterating in this manner, the algorithm efficiently finds the LCA without additional space for storing ancestors or complex tree traversals, making it a succinct and effective solution. */ 
+
+function lowestCommonAncestor(root, p, q) {
+  let ans = null;
+
+  function recurseTree(currentNode) {
+      if (currentNode === null) {
+          return false;
+      }
+
+      let left = recurseTree(currentNode.left) ? 1 : 0;
+      let right = recurseTree(currentNode.right) ? 1 : 0;
+      let mid = (currentNode === p || currentNode === q) ? 1 : 0;
+
+      if (mid + left + right >= 2) {
+          ans = currentNode;
+      }
+
+      return (mid + left + right > 0);
+  }
+
+  recurseTree(root);
+  return ans;
+}
+
+//recursive
