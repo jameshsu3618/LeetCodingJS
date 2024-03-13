@@ -28,7 +28,7 @@ function calculate(s) {
 
 // calculator 1 with paran
 
-calculate(s) {
+function calculate(s) {
   let stack = [];
   let operand = 0;
   let result = 0; // For the ongoing result
@@ -83,3 +83,91 @@ calculate(s) {
 
   return result + (sign * operand);
 }
+
+//calculator 3
+var calculate = function(s) {
+  var array = s.split('')
+  var solve = (s) => {
+    var len = s.length
+    var arr = []
+    var i=0
+    // process the brakets, the arr will only have numberString and +-*/
+    for(; i<len;) {
+      if(s[i]>='0' && s[i]<='9') {
+        var j=i+1
+        while(j<len && s[j]>='0' && s[j]<='9') {
+          j++
+        }
+        var tp = s.slice(i,j).join('')
+        arr.push(tp)
+        i = j
+      }
+      else if(s[i]==')') {
+        var tp = []
+        while(arr.length>0) {
+          var cur = arr.pop()
+          if(cur=='(') {
+            var curNum = solve(tp)
+            arr.push(curNum)
+            break
+          }else {
+            tp.unshift(cur)
+          }
+        }
+        i++
+      }
+      else{
+        arr.push(s[i])
+        i++
+      }
+    }
+
+    var res = 0
+    var f = true
+    var hp = []
+
+    // Process * and /, hp only has and +-
+    for(var i=0; i<arr.length; i++) {
+      var cur = arr[i]
+      if(cur=='*') {
+        var pre = hp.pop()
+        var nxt = arr[i+1]
+        hp.push(pre*nxt)
+        i++
+      }
+      else if(cur =='/'){
+        var pre = hp.pop()
+        var nxt = arr[i+1]
+        hp.push(pre/nxt | 0)
+        i++
+      }
+      else {
+        hp.push(cur)
+      }
+    }
+    // Calculated the final 
+    while(hp.length>0) {
+      var cur = hp.shift()
+      if(cur=='+') {
+        f = true
+      }
+      else if(cur == '-') {
+        f = false
+      }
+      else{
+        if(f) {
+          var curN = parseInt(cur)
+          res += curN
+        }else{
+          var curN = parseInt(cur)
+          res-= curN
+        }
+      }
+    }
+
+  return res
+}
+
+var rs = solve(array)
+return rs
+};

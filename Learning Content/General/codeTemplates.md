@@ -155,7 +155,7 @@ function monotonicIncreasingStack(nums) {
     }
     return stack;
 }
-```
+``` 
 
 ### Binary Tree: DFS (Recursive)
 ```javascript

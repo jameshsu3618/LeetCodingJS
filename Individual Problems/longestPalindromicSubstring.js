@@ -33,3 +33,6 @@ var longestPalindrome = function(s) {
 
   return s.slice(start, start+maxLen);
 };
+
+// brute force
+
